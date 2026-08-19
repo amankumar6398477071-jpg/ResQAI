@@ -1,0 +1,642 @@
+/* ============================================================
+   Citizen SOS — Design tokens
+   Palette: civic blue (trust) + signal red (urgency) + amber/green (status)
+   Type: Barlow Condensed (display) / Inter (body) / IBM Plex Mono (data)
+   ============================================================ */
+
+:root {
+    --ink: #101826;
+    --ink-soft: #3B4657;
+    --line: #D8DEE7;
+    --surface: #FFFFFF;
+    --surface-sunken: #F3F6FA;
+    --bg: #E8EDF3;
+
+    --civic-blue: #1B3A5C;
+    --civic-blue-dark: #102A46;
+    --civic-blue-tint: #E4EBF3;
+
+    --signal-red: #D6473C;
+    --signal-red-dark: #B23429;
+    --signal-red-tint: #FBE7E4;
+
+    --amber: #C77F1E;
+    --amber-tint: #FBEDD8;
+
+    --green: #2E7D5B;
+    --green-tint: #DFF0E8;
+
+    --font-display: "Barlow Condensed", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
+    --shadow-sm: 0 1px 2px rgba(16, 24, 38, 0.08);
+    --shadow-md: 0 8px 24px rgba(16, 24, 38, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin: 0.15em 0 0.35em;
+    color: var(--civic-blue-dark);
+}
+
+h1 {
+    font-size: 2.1rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 0 0 0.5em;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ============ Dispatch top bar ============ */
+
+.dispatch-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--civic-blue-dark);
+    color: #F5F8FC;
+    padding: 0.85rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: var(--shadow-md);
+}
+
+.dispatch-bar__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.dispatch-bar__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--signal-red);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+}
+
+.dispatch-bar__title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.dispatch-bar__subtitle {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #A9BAD1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.dispatch-bar__clock {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: #CFE0F5;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.03em;
+}
+
+/* ============ Layout ============ */
+
+.layout {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 1.75rem 1.25rem 3rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.panel__head {
+    margin-bottom: 1.25rem;
+}
+
+.panel__head--row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.panel__lead {
+    color: var(--ink-soft);
+    max-width: 56ch;
+    font-size: 0.95rem;
+}
+
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--civic-blue);
+    margin: 0 0 0.4em;
+}
+
+/* ============ SOS Panel (signature element) ============ */
+
+.panel--sos {
+    background: linear-gradient(180deg, var(--civic-blue-dark) 0%, var(--civic-blue) 100%);
+    color: #F5F8FC;
+}
+
+.panel--sos h1 {
+    color: #fff;
+}
+
+.panel--sos .panel__lead {
+    color: #C7D6E8;
+}
+
+.panel--sos .eyebrow {
+    color: #8FB4E0;
+}
+
+.sos-trigger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.75rem 0 0.5rem;
+}
+
+.sos-button {
+    position: relative;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    border: none;
+    background: radial-gradient(circle at 35% 30%, #E8695D, var(--signal-red) 60%, var(--signal-red-dark) 100%);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(214, 71, 60, 0.45), inset 0 -4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sos-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 14px 34px rgba(214, 71, 60, 0.55), inset 0 -4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sos-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.sos-button:focus-visible {
+    outline: 3px solid #FFD9A0;
+    outline-offset: 4px;
+}
+
+.sos-button__label {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    z-index: 2;
+}
+
+.sos-button__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    animation: sos-pulse 2.6s ease-out infinite;
+}
+
+.sos-button__ring--2 {
+    animation-delay: 1.3s;
+}
+
+@keyframes sos-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.65;
+    }
+
+    100% {
+        transform: scale(1.55);
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sos-button__ring {
+        animation: none;
+        display: none;
+    }
+
+    .sos-button:hover {
+        transform: none;
+    }
+}
+
+.sos-trigger__hint {
+    font-size: 0.85rem;
+    color: #B9CCE3;
+    margin: 0;
+}
+
+/* ============ Forms (shared) ============ */
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+}
+
+.panel--sos .field label {
+    color: #DCE8F5;
+}
+
+.optional-tag {
+    font-weight: 400;
+    font-style: italic;
+    color: #8C99AC;
+    font-size: 0.78rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+    background: var(--surface-sunken);
+    color: var(--ink);
+    resize: vertical;
+}
+
+.panel--sos .field input,
+.panel--sos .field select,
+.panel--sos .field textarea {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: 2px solid var(--civic-blue);
+    outline-offset: 1px;
+}
+
+.sos-form,
+.incident-form {
+    margin-top: 1.25rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+/* ============ Buttons ============ */
+
+.btn {
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.15rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn--danger {
+    background: var(--signal-red);
+    color: #fff;
+}
+
+.btn--danger:hover {
+    filter: brightness(1.08);
+}
+
+.btn--primary {
+    background: var(--civic-blue);
+    color: #fff;
+}
+
+.btn--primary:hover {
+    filter: brightness(1.1);
+}
+
+.btn--ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: inherit;
+}
+
+.panel--report .btn--ghost,
+.panel--list .btn--ghost {
+    border-color: var(--line);
+    color: var(--ink-soft);
+}
+
+.btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.panel--report .btn--ghost:hover,
+.panel--list .btn--ghost:hover {
+    background: var(--surface-sunken);
+}
+
+.btn--small {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.82rem;
+    margin-top: 0.6rem;
+}
+
+/* ============ SOS Confirmation ============ */
+
+.sos-confirm {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-md);
+    padding: 1.1rem 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.sos-confirm__icon {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.sos-confirm__title {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    margin: 0 0 0.3em;
+    color: #fff;
+}
+
+.sos-confirm__body {
+    font-size: 0.88rem;
+    color: #D6E2F0;
+    margin: 0;
+}
+
+/* ============ Incident list ============ */
+
+.filter-group {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+}
+
+.filter-chip:hover {
+    border-color: var(--civic-blue);
+}
+
+.filter-chip.is-active {
+    background: var(--civic-blue);
+    border-color: var(--civic-blue);
+    color: #fff;
+}
+
+.incident-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.incident-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface-sunken);
+}
+
+.incident-card__id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #8C99AC;
+    white-space: nowrap;
+}
+
+.incident-card__title {
+    font-weight: 600;
+    margin: 0 0 0.2em;
+    color: var(--ink);
+}
+
+.incident-card__meta {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin: 0;
+}
+
+.incident-card__desc {
+    font-size: 0.83rem;
+    color: var(--ink-soft);
+    margin: 0.3em 0 0;
+}
+
+.incident-card__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.status-select {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-soft);
+}
+
+.status-chip {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.status-chip--reported {
+    background: var(--amber-tint);
+    color: var(--amber);
+}
+
+.status-chip--in-progress {
+    background: var(--civic-blue-tint);
+    color: var(--civic-blue);
+}
+
+.status-chip--resolved {
+    background: var(--green-tint);
+    color: var(--green);
+}
+
+.empty-state {
+    text-align: center;
+    color: #8C99AC;
+    font-size: 0.9rem;
+    padding: 1.5rem 0 0.5rem;
+}
+
+/* ============ Footer ============ */
+
+.app-footer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #8C99AC;
+    padding: 0 1.25rem 2rem;
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 600px) {
+    .layout {
+        padding: 1.25rem 0.85rem 2.5rem;
+    }
+
+    .panel {
+        padding: 1.25rem;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sos-button {
+        width: 128px;
+        height: 128px;
+    }
+
+    .sos-button__label {
+        font-size: 1.6rem;
+    }
+
+    .incident-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .incident-card__right {
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .dispatch-bar__subtitle {
+        display: none;
+    }
+
+    .panel__head--row {
+        align-items: flex-start;
+    }
+}

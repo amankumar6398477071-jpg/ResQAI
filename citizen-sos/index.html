@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Citizen SOS &amp; Incident Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- Top dispatch bar -->
+    <header class="dispatch-bar">
+        <div class="dispatch-bar__brand">
+            <span class="dispatch-bar__mark">CS</span>
+            <div>
+                <p class="dispatch-bar__title">Citizen SOS</p>
+                <p class="dispatch-bar__subtitle">Community Incident Desk</p>
+            </div>
+        </div>
+        <div class="dispatch-bar__clock" id="liveClock" aria-live="polite">--:--:--</div>
+    </header>
+
+    <main class="layout">
+
+        <!-- ============ SOS PANEL ============ -->
+        <section class="panel panel--sos" id="sosPanel" aria-labelledby="sosHeading">
+            <div class="panel__head">
+                <p class="eyebrow">01 — Emergency Signal</p>
+                <h1 id="sosHeading">Send an SOS</h1>
+                <p class="panel__lead">Press the signal, tell us where and what's happening. Dispatch mock-response is
+                    instant on this demo.</p>
+            </div>
+
+            <div class="sos-trigger">
+                <button class="sos-button" id="sosButton" type="button" aria-describedby="sosButtonHint">
+                    <span class="sos-button__ring sos-button__ring--1"></span>
+                    <span class="sos-button__ring sos-button__ring--2"></span>
+                    <span class="sos-button__label">SOS</span>
+                </button>
+                <p class="sos-trigger__hint" id="sosButtonHint">Tap to open the emergency form</p>
+            </div>
+
+            <!-- SOS Form (hidden until triggered) -->
+            <form class="sos-form" id="sosForm" hidden>
+                <div class="field">
+                    <label for="emergencyType">Emergency type</label>
+                    <select id="emergencyType" name="emergencyType" required>
+                        <option value="" disabled selected>Select the type of emergency</option>
+                        <option value="Medical">Medical</option>
+                        <option value="Fire">Fire</option>
+                        <option value="Crime / Safety Threat">Crime / Safety Threat</option>
+                        <option value="Natural Disaster">Natural Disaster</option>
+                        <option value="Accident">Accident</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="sosLocation">Location</label>
+                    <input type="text" id="sosLocation" name="sosLocation"
+                        placeholder="e.g. Sector 12, Main Market Road" required />
+                </div>
+
+                <div class="field">
+                    <label for="sosDescription">Description <span class="optional-tag">optional</span></label>
+                    <textarea id="sosDescription" name="sosDescription" rows="3"
+                        placeholder="Anything responders should know before they arrive"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn--ghost" id="cancelSos">Cancel</button>
+                    <button type="submit" class="btn btn--danger">Submit SOS</button>
+                </div>
+            </form>
+
+            <!-- Confirmation -->
+            <div class="sos-confirm" id="sosConfirm" hidden role="status">
+                <div class="sos-confirm__icon" aria-hidden="true">✓</div>
+                <div>
+                    <p class="sos-confirm__title">SOS received — <span id="confirmId"></span></p>
+                    <p class="sos-confirm__body">
+                        <span id="confirmType"></span> reported at <span id="confirmLocation"></span>.
+                        A responder has been notified. Status: <span
+                            class="status-chip status-chip--reported">Reported</span>
+                    </p>
+                    <button type="button" class="btn btn--ghost btn--small" id="sendAnotherSos">Send another
+                        SOS</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ INCIDENT REPORT PANEL ============ -->
+        <section class="panel panel--report" aria-labelledby="reportHeading">
+            <div class="panel__head">
+                <p class="eyebrow">02 — Incident Report</p>
+                <h2 id="reportHeading">Log a non-urgent incident</h2>
+                <p class="panel__lead">For issues that need tracking but aren't an active emergency — potholes, outages,
+                    disturbances, hazards.</p>
+            </div>
+
+            <form class="incident-form" id="incidentForm">
+                <div class="field">
+                    <label for="incidentTitle">Title</label>
+                    <input type="text" id="incidentTitle" name="incidentTitle"
+                        placeholder="Short summary, e.g. Streetlight outage" required />
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label for="incidentCategory">Category</label>
+                        <select id="incidentCategory" name="incidentCategory" required>
+                            <option value="" disabled selected>Select category</option>
+                            <option value="Infrastructure">Infrastructure</option>
+                            <option value="Utility">Utility</option>
+                            <option value="Public Safety">Public Safety</option>
+                            <option value="Environment">Environment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="incidentLocation">Location</label>
+                        <input type="text" id="incidentLocation" name="incidentLocation"
+                            placeholder="Where is this happening?" required />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="incidentDescription">Description <span class="optional-tag">optional</span></label>
+                    <textarea id="incidentDescription" name="incidentDescription" rows="3"
+                        placeholder="Add any useful detail"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn--primary">Report incident</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- ============ INCIDENT LIST ============ -->
+        <section class="panel panel--list" aria-labelledby="listHeading">
+            <div class="panel__head panel__head--row">
+                <div>
+                    <p class="eyebrow">03 — Incident Log</p>
+                    <h2 id="listHeading">All reports</h2>
+                </div>
+                <div class="filter-group" role="group" aria-label="Filter incidents by status">
+                    <button class="filter-chip is-active" data-filter="All" type="button">All</button>
+                    <button class="filter-chip" data-filter="Reported" type="button">Reported</button>
+                    <button class="filter-chip" data-filter="In Progress" type="button">In Progress</button>
+                    <button class="filter-chip" data-filter="Resolved" type="button">Resolved</button>
+                </div>
+            </div>
+
+            <div class="incident-list" id="incidentList">
+                <!-- Incident cards injected by incident.js -->
+            </div>
+
+            <p class="empty-state" id="emptyState" hidden>No incidents match this filter yet.</p>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>Demo build — all data is stored locally in your browser for this session only. No real dispatch is contacted.
+        </p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/sos.js"></script>
+    <script src="js/incident.js"></script>
+</body>
+
+</html>
